@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Saved Data Files</title>
+    <link rel="stylesheet" href="./css/material.css">
+    <link rel="stylesheet" href="./css/nv.d3.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <style>
+      html, body{
+        margin: 0;
+        padding: 0;
+      }
+      .container{
+        display: flex;
+        background: lightgray;
+      }
+      .left{
+        flex: 1 1 auto;
+      }
+      .contents{
+        flex: 1;
+      }
+      #chart, svg {
+        margin: 0px;
+        padding: 0px;
+        height: 80%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="container">
+    <div class="left">
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid">
+          <table id="file-list" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">File Name</th>
+                <!--<th class="mdl-data-table__cell--non-numeric">Action</th>-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="file in files">
+                <td class="mdl-data-table__cell--non-numeric" v-on:click="showGraph">{{ file.name }}</td>
+          		  <!--<td><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" v-on:click="doStartStop">{{ file.action }}</button></td>-->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <div class="contents">
+      <div id="chart" class='with-3d-shadow with-transitions'><svg></svg></div>
+      <div id="fft">
+        <canvas id="fft-canvas" width="1024" height="256" style="display: block; background-color: black; z-index: -1;"></canvas>
+      </div>
+    </div>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/d3.3.5.17.min.js"></script>
+    <script src="./js/nv.d3.js"></script>
+    <script src="./js/stream_layers.js"></script>
+    <script src="./js/material.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-mdl.min.js"></script>
+    <script src="./js/chroma.js"></script>
+    <script src="./js/resampler.js"></script>
+    <script src="./js/dsp.js"></script>
+    <script src="./js/app-table.js"></script>
+  </div>
+  </body>
+</html>

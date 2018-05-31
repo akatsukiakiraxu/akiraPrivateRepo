@@ -1,0 +1,23 @@
+<form name="formSetting" ng-submit="changeQuantization(mlSetting, qtzChoice)" novalidate>
+	<div class="form-group-sm">
+		<label style="font-weight: 500;width: 100%;"><div class="alert-sm" style="background: rgba(255, 255, 255, 0.2);">QUANTIZATION</div></label>
+	</div>
+	<div class="form-group-sm">
+		<select ng-model="qtzChoice" ng-options="choice.label for choice in qtzChoices" class="form-control" title="" data-container="body" selectpicker></select>
+	</div>
+	<div class="form-group-sm">
+		<label for="channel">Number Of Sections: X</label>
+		<div class="form-group-sm">
+			<input ng-model="mlSetting.quantization.number_of_sections_x" type="number" class="form-control input-sm" min="1" max="128" placeholder="1 to 128">
+		</div>
+	</div>
+	<div class="form-group-sm">
+		<label for="channel">Number Of Sections: Y</label>
+		<div class="form-group-sm">
+			<input ng-model="mlSetting.quantization.number_of_sections_y" type="number" class="form-control input-sm" min="1"　max="128" placeholder="1 to 128">
+		</div>
+	</div>
+	<div class="form-group-sm" style="margin-bottom: 5px;">
+		<button ng-disabled="formSetting.$invalid" type="submit" class="btn btn-warning btn-with-icon" style="margin-top: 8px;"><i class="ion-android-sync"></i>CHANGE</button>
+	</div>
+</form>

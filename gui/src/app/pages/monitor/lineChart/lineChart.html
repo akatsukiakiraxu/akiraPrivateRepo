@@ -1,0 +1,282 @@
+<style>
+	body {
+		background-color: black;
+		color: white;
+	}
+	.signal-current {
+		stroke: #40ff00;
+		fill: #40ff00;
+		fill-opacity: 0.5;
+	}
+	.signal-old {
+		stroke: #20a000;
+		fill: #20a000;
+		fill-opacity: 0.5;
+	}
+	.signal-error {
+		stroke: #ff0000;
+		fill: #ff0000;
+		fill-opacity: 1;
+	}
+	#chart {
+		width: 1200;
+		height: 600;
+	}
+	#params {
+		width: 1200;
+	}
+	.selected {
+		fill: red;
+		stroke: brown;
+	}
+</style>
+<script type="text/javascript">
+	
+RealtimeConnection = function(addr){
+	var self = this;
+	this.onmessage = null;
+	this.connection = new WebSocket('ws://' + addr + ':2222/monitoring/summary');
+	this.connection.binaryType = 'arraybuffer';
+	this.connection.onmessage = function(e){
+		var s = new DataView(e.data);
+		var type = s.getUint16(0, true);
+		var flag = s.getUint16(2,true);
+		var length = s.getUint32(4, true);
+		switch (type) {
+		case 0: // Raw data.
+			var result = [];
+			var number_of_channels = length / (4*4)
+			for (var c = 0; c < number_of_channels; c++) {
+				channel_data = [];
+				for (var i = 0; i < 4; i++) {
+					channel_data.push(s.getFloat32(8 + 4*4 * c + 4 * i, true));
+				}
+				result.push(channel_data);
+			}
+			chart_renderer.push(result);
+			chart_renderer.updateData();
+			break;
+		case 1: // FFT
+			var ch = s.getUint16(6, true);
+			chart_renderer.set_fft(ch, new Uint16Array(e.data, 8));
+			break;
+		case 2: // Expected values of FFT
+			chart_renderer.set_fft_expected(new Uint16Array(e.data, 6));
+			break;
+		case 3: // Channel data
+			break;
+		}
+	};
+};
+	
+	$(document).ready(function() {
+		var margin = {top: 20, right: 20, bottom: 30, left: 25},
+			width = 880 - margin.left - margin.right,
+			height = 500 - margin.top - margin.bottom;
+
+		var number_of_samples = 1000;
+		var minimum_value = 0;
+		var maximum_value = 30000/1000;
+
+		var x = d3.scaleLinear()
+			.domain([0, number_of_samples])
+			.range([0, width]);
+
+		var y = d3.scaleLinear()
+			.domain([minimum_value, maximum_value])
+			.range([height, 0]);
+
+		var xAxis = d3.axisBottom()
+			.scale(x)
+			.tickSizeInner(-height)
+			.tickSizeOuter(10);
+
+		var yAxis = d3.axisLeft()
+			.scale(y)
+			.tickSizeInner(-width)
+			.tickSizeOuter(10);
+
+		var svg = d3.select("#chart").append("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		var data = new Array(number_of_samples);
+		for(var i = 0; i < number_of_samples; i++) {
+			data[i] = {index: i, max: 0, min: 0, expected_max: 1.9, expected_min: -1.9 };
+		}
+
+		var old_signal_path = svg.append("path")
+			.attr("class", "signal-old");
+		var cur_signal_path = svg.append("path")
+			.attr("class", "signal-current");
+		var err_signal_path = svg.append("path")
+			.attr("class", "signal-error");
+		var scanline_path = svg.append("path");
+
+		svg.append("g")
+			.attr("class", "axis-x")
+			.attr("stroke", "white")
+			.attr("transform", "translate(0," + height + ")")
+			.call(function(g){
+				g.call(xAxis);
+				g.select(".domain").attr("stroke", null);
+				g.selectAll(".tick line").attr("stroke", null);
+			});
+
+		svg.append("g")
+			.attr("class", "axis-y")
+			.attr("stroke", "white")
+			.call(function(g){
+				g.call(yAxis);
+				g.select(".domain").attr("stroke", null);
+				g.selectAll(".tick line").attr("stroke", null);
+			});
+
+		var sample_index = 0;
+		var self = this;
+		this.onmessage = null;
+		this.connection = new WebSocket('ws://' + location.hostname + ':2222/monitoring/summary');
+		this.connection.binaryType = 'arraybuffer';
+		var headerLength = 8;
+		
+		//# 3 - チャネル・データ
+		var onChdata = false;		//# チャネル・データ到達済み？
+		var chCnt = -1;				//# チャネル数
+		var chNm = null;			//# チャネル名
+		var resv = 0;
+		var curCh = window.document.getElementById('channel').value.replace('string:', '');
+		window.document.getElementById('channel').onchange = function chCng(){
+			chart_renderer.channel = chs.indexOf(window.parent.document.getElementById('channel').value.replace('string:', ''));
+		};
+		
+		var fft_buffer_size = 1024;
+		var fft_chart_margin = 50;
+		var fft_data = [];
+		
+		this.connection.onmessage = function(e){
+			var snr = Number($("#text-snr").value);
+			if( isNaN(snr) || snr <= 0 ) {
+				snr = 1000;
+			}
+			var i = sample_index;
+			var v = Math.sin(Math.PI*2*i*20/1000);
+			var inputData = location.hash.slice(location.hash.indexOf('input='));
+			inputData = inputData.replace('input=', '');
+			
+			var dv = new DataView(e.data);
+			var type = dv.getUint16(0, true);
+			var flagH = dv.getUint8(2, true);
+			var flagL = dv.getUint8(3, true);
+			var length = dv.getUint32(4, true);
+			var ch = dv.getUint16(6, true)
+
+//			console.log('flagL:' + flagL);
+//			console.log('length:' + length);
+			
+			//# 3 - チャネル・データの保管
+			if(type == 3){
+				chCnt = dv.getUint16(headerLength + 0, true);　
+				resv = dv.getUint16(headerLength + 2, true);
+				chNm = e.data.slice(headerLength + 4);
+				chNm = String.fromCharCode.apply(null, new Uint8Array(chNm));
+				onChdata = true;
+				console.log('3.chCnt:' + chCnt);
+				console.log('3.resv:' + resv);
+			}
+			
+			if(onChdata && type == 1 && inputData == 'fft'){
+				
+				console.log('type:' + type);
+				console.log('ch:' + ch);
+				
+				var ch = s.getUint16(6, true);
+				var fftData = new Uint16Array(e.data, 8);
+				fft_data[ch] = fftData;
+				
+				var fft_x = d3.scaleLinear()
+					.domain([0,fft_buffer_size])
+					.range([fft_chart_margin, width]);
+				var fft_y = d3.scaleLinear()
+					.domain([-300, 3000])
+					.range([height, 0]);
+				
+				var a = dv.getUint8(2, true)/1000;
+				var b = dv.getUint8(2, true)/1000;
+				data[i] = {index: i, max: v+a, min: v-b, expected_max: 1.5, expected_min: -1.5};
+				
+				var fft_area = d3.area()
+					.defined(function(d) {return d.index <= sample_index; })
+					.x(function(d, i) { return fft_x(i); })
+					.y0(function(d) { return fft_y(d[0]); })
+					.y1(function(d) { return fft_y(d[1]); });
+				
+				var area_current = d3.area()
+				.defined(function(d) {return d.index <= sample_index; })
+				.x(function(d) { return x(d.index); })
+				.y0(function(d) { return y(d.max); })
+				.y1(function(d) { return y(d.min); });
+
+				var area_old = d3.area()
+					.defined(function(d) {return d.index > sample_index; })    
+					.x(function(d) { return x(d.index); })
+					.y0(function(d) { return y(d.max); })
+					.y1(function(d) { return y(d.min); });
+
+				var area_error = d3.area()
+					.defined(function(d) {return d.index <= sample_index && (d.max > d.expected_max || d.min < d.expected_min); })    
+					.x(function(d) { return x(d.index); })
+					.y0(function(d) { return y(d.max); })
+					.y1(function(d) { return y(d.min); });
+
+				cur_signal_path
+					.datum(fft_data['ch1'])
+					.attr("d", fft_area);
+				old_signal_path
+					.datum(data)
+					.attr("d", area_old);
+				err_signal_path
+					.datum(data)
+					.attr("d", area_error);
+
+				line = d3.path()
+				line.moveTo(x(sample_index), y(minimum_value))
+				line.lineTo(x(sample_index), y(maximum_value))
+
+				scanline_path
+					.attr("stroke", "red")
+					.attr("d", line);
+
+				sample_index++;
+				if( sample_index >= number_of_samples ) {
+					sample_index = 0;
+				}
+			
+			}
+
+			
+
+//			console.log('v:' + v);
+//			console.log('a:' + a);
+//			console.log('b:' + b);
+//			console.log('d.index:' + data[i].index);
+//			console.log('d.max:' + data[i].max);
+//			console.log('d.min:' + data[i].min);
+			
+
+		};
+		
+		
+		
+		
+
+	})
+//	});
+</script>
+
+<div id="chart"></div>
+<div id="params">
+	<span>SNR:</span>
+	<input id="text-snr" type="text" maxlength="10" value="1000"/>
+</div>

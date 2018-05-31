@@ -1,0 +1,10 @@
+{
+    "input_type": "fft",
+    "target_channels": ["ch1"],
+    "loss_threshold": 0.5,
+    "quantization": {
+        "enabled": true,
+        "number_of_sections_x": 16,
+        "number_of_sections_y": 16
+    }
+}

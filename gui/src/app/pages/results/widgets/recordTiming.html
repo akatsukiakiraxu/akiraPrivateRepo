@@ -1,0 +1,11 @@
+<form name="formSetting" ng-submit="changeRecordTiming(recTmgChoice)" novalidate>
+	<div class="form-group-sm">
+		<label style="font-weight: 500;width: 100%;"><div class="alert-sm" style="background: rgba(255, 255, 255, 0.2);">RECORD TIMIG</div></label>
+	</div>
+	<div class="form-group-sm">
+		<select ng-model="recTmgChoice" ng-options="choice.label for choice in recTmgChoices" class="form-control" data-container="body" selectpicker></select>
+	</div>
+	<div class="form-group-sm" style="margin-bottom: 5px;">
+		<button class="btn btn-warning btn-with-icon" style="margin-top: 8px;" ng-disabled="formSetting.$invalid" type="submit"><i class="ion-android-sync"></i>CHANGE</button>
+	</div>
+</form>

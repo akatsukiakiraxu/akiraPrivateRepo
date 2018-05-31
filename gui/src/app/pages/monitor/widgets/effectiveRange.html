@@ -1,0 +1,19 @@
+<form name="formSetting" ng-submit="getMlSetting()" novalidate>
+	<div class="form-group-sm">
+		<label style="font-weight: 500;width: 100%;"><div class="alert-sm" style="background: rgba(255, 255, 255, 0.2);">EFFECTIVE RANGE</div></label>
+	</div>
+	<div class="form-group-sm">
+		<div class="form-group-sm" style="margin-top: 2px;">
+			<input ng-model="mntDuration" disabled="disabled" value="" type="text" class="form-control input-sm" placeholder="">
+		</div>
+		<div class="form-group-sm" style="margin-top: 2px;">
+			<input id="currentRange" ng-model="currentRange" disabled="disabled" value="" type="text" class="form-control input-sm" placeholder="">
+		</div>
+		<div class="form-group-sm" style="margin-top: 2px;">
+			<input id="selectedRange" disabled="disabled" value="" type="text" class="form-control input-sm" placeholder="">
+		</div>
+	</div>
+	<div class="form-group-sm" style="margin-bottom: 5px;">
+		<button id="setEffectiveRange" ng-disabled="formSetting.$invalid" type="submit" class="btn btn-warning btn-with-icon" style="margin-top: 8px;"><i class="ion-android-sync"></i>CHANGE</button>
+	</div>
+</form>

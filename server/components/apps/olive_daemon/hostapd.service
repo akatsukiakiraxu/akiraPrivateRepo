@@ -1,0 +1,11 @@
+[Unit]
+After=network-online.target
+
+[Service]
+type=forking
+PIDFile=/run/hostapd/hostapd.pid
+ExecStart=/opt/hostapd
+PrivateTmp=true
+
+[Install]
+WantedBy=network-online.target

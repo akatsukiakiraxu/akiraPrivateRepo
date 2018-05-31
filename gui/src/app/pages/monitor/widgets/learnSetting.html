@@ -1,0 +1,13 @@
+<form name="formMlSetting" ng-submit="learnSetting(mlSetting)" novalidate>
+	<div class="form-group-sm">
+		<label style="font-weight: 500;width: 100%;"><div class="alert-sm" style="background: rgba(255, 255, 255, 0.2);">LEARN SETTING</div></label>
+	</div>
+	<div class="form-group-sm" style="margin-bottom: 5px;">
+		<label>Number of Training</label>
+		<input ng-model="mlSetting.training_count" type="number" class="form-control input-sm" placeholder="...">
+	</div>
+	<div class="form-group-sm" style="margin-bottom: 5px;">
+<!--		<a href="/#/progress"><button type="submit" class="btn btn-success"><i class="ion-play"></i>&ensp;START</button></a>-->
+		<button class="btn btn-success btn-with-icon" style="margin-top: 8px;" ng-disabled="formMlSetting.$invalid" type="submit"><i class="ion-play"></i>START</button>
+	</div>
+</form>

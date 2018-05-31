@@ -1,0 +1,54 @@
+{
+    "name": "discovery",
+    "type": "discovery",
+    "change_finder_list": [],
+    "ranges": {
+        "±10[V]": {
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 65535
+        },
+        "±1[V]": {
+            "minimum_voltage": -1.0,
+            "maximum_voltage":  1.0,
+            "minimum_value": 0,
+            "maximum_value": 65535
+        },
+        "±100[mV]": {
+            "minimum_voltage": -1.0e-1,
+            "maximum_voltage":  1.0e-1,
+            "minimum_value": 0,
+            "maximum_value": 65535
+        },
+        "±10[mV]": {
+            "minimum_voltage": -1.0e-2,
+            "maximum_voltage":  1.0e-2,
+            "minimum_value": 0,
+            "maximum_value": 65535
+        },
+        "±1[mV]": {
+            "minimum_voltage": -1.0e-3,
+            "maximum_voltage":  1.0e-3,
+            "minimum_value": 0,
+            "maximum_value": 65535
+        },
+        "±100[uV]": {
+            "minimum_voltage": -1.0e-4,
+            "maximum_voltage":  1.0e-4,
+            "minimum_value": 0,
+            "maximum_value": 65535
+        }
+    },
+    "channels": {
+        "ch1": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±1[V]","±100[mV]","±10[mV]","±1[mV]","±100[uV]"],
+            "couplings_supported": ["DC"]
+        }
+    },
+    "parameters": {
+        "discovery_address":"",
+        "discovery_port":18080
+    }
+}

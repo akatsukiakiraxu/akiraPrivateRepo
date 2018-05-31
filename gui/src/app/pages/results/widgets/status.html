@@ -1,0 +1,24 @@
+<div class="form-group-sm">
+	<label style="font-weight: 500;width: 100%;"><div class="alert-sm" style="background: rgba(255, 255, 255, 0.2);">TRAINING SOURCE</div></label>
+</div>
+<div class="form-group-sm">
+	<label>Input: {{mlSetting.input_type | uppercase}}</label>
+</div>
+<div class="form-group-sm">
+	<label>Acquiring: {{setting.enabled}}</label>
+</div>
+<div class="form-group-sm">
+	<label>Compare: {{setting.comparing}}</label>
+</div>
+<div class="form-group-sm">
+	<label>Channel Active: {{mlSetting.target_channels[0]}}</label>
+</div>
+<!--
+<div class="form-group-sm">
+	<label>Gain: {{setting.channels[mlSetting.target_channels].gain}}</label>
+</div>
+<div class="form-group-sm">
+	<label><div style="color:#888888">Change Finder: ---</div></label>
+</div>
+-->
+<input type="hidden" id="channel" onchange="chCng()" value="{{mlSetting.target_channels[0]}}" />

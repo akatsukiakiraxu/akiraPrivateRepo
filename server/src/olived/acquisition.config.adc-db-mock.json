@@ -1,0 +1,103 @@
+{
+    "name": "adc-db",
+    "type": "adcdb",
+    "change_finder_list": [],
+    "ranges": {
+        "±10[V]": {
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": -10.0,
+            "maximum_value": 10.0
+        },
+        "±5[V]": {
+            "minimum_voltage": -5.0,
+            "maximum_voltage":  5.0,
+            "minimum_value": -5.0,
+            "maximum_value": 5.0
+        },
+        "±2.5[V]": {
+            "minimum_voltage": -2.5,
+            "maximum_voltage":  2.5,
+            "minimum_value": -2.5,
+            "maximum_value":  2.5
+        },
+        "±1.25[V]": {
+            "minimum_voltage": -1.25,
+            "maximum_voltage":  1.25,
+            "minimum_value": -1.25,
+            "maximum_value":  1.25
+        },
+        "±0.625[V]": {
+            "minimum_voltage": -0.625,
+            "maximum_voltage":  0.625,
+            "minimum_value": -0.625,
+            "maximum_value":  0.625
+        },
+        "0~+10[V]": {
+            "minimum_voltage":   0.0,
+            "maximum_voltage":  10.0,
+            "minimum_value":  0.0,
+            "maximum_value": 10.0
+        },
+        "0~+5[V]": {
+            "minimum_voltage":  0.0,
+            "maximum_voltage":  5.0,
+            "minimum_value": 0.0,
+            "maximum_value": 5.0
+        },
+        "0~+2.5[V]": {
+            "minimum_voltage":  0.0,
+            "maximum_voltage":  2.5,
+            "minimum_value":  0.0,
+            "maximum_value":  2.5
+        },
+        "0~+1.25[V]": {
+            "minimum_voltage":  0.0,
+            "maximum_voltage":  1.25,
+            "minimum_value":  0.0,
+            "maximum_value":  1.25
+        }
+    },
+    "channels": {
+        "ch1": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±5[V]","±2.5[V]","±1.25[V]","±0.625[V]","0~+10[V]","0~+5[V]","0~+2.5[V]","0~+1.25[V]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        },
+        "ch2": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±5[V]","±2.5[V]","±1.25[V]","±0.625[V]","0~+10[V]","0~+5[V]","0~+2.5[V]","0~+1.25[V]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        },
+        "ch3": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±5[V]","±2.5[V]","±1.25[V]","±0.625[V]","0~+10[V]","0~+5[V]","0~+2.5[V]","0~+1.25[V]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        },
+        "ch4": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±5[V]","±2.5[V]","±1.25[V]","±0.625[V]","0~+10[V]","0~+5[V]","0~+2.5[V]","0~+1.25[V]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        }
+    },
+    "parameters": {
+        "adcdb_path":"../adc-db/adc-db",
+        "adcdb_args":["MIC-1816.property.json"]
+    }
+}

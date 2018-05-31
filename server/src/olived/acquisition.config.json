@@ -1,0 +1,73 @@
+{
+    "name": "mockUnit",
+    "type": "mock",
+    "change_finder_list": [],
+    "ranges": {
+        "±10[V]": {
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": -10.0,
+            "maximum_value": 10.0
+        },
+        "±1[V]": {
+            "minimum_voltage": -1.0,
+            "maximum_voltage":  1.0,
+            "minimum_value": -1.0,
+            "maximum_value": 1.0
+        },
+        "±100[mV]": {
+            "minimum_voltage": -1.0e-1,
+            "maximum_voltage":  1.0e-1,
+            "minimum_value": -1.0e-1,
+            "maximum_value": 1.0e-1
+        },
+        "±10[mV]": {
+            "minimum_voltage": -1.0e-2,
+            "maximum_voltage":  1.0e-2,
+            "minimum_value": -1.0e-2,
+            "maximum_value": 1.0e-2
+        }
+    },
+    "channels": {
+        "ch1": {
+            "sampling_rates_supported": [250e+3],
+            "couplings_supported": ["DC"],
+            "ranges_supported": ["±10[V]","±1[V]","±100[mV]","±10[mV]"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        },
+        "ch2": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±1[V]","±100[mV]","±10[mV]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        },
+        "ch3": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±1[V]","±100[mV]","±10[mV]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        },
+        "ch4": {
+            "sampling_rates_supported": [250e+3],
+            "ranges_supported": ["±10[V]","±1[V]","±100[mV]","±10[mV]"],
+            "couplings_supported": ["DC"],
+            "minimum_voltage": -10.0,
+            "maximum_voltage":  10.0,
+            "minimum_value": 0,
+            "maximum_value": 32767
+        }
+    },
+    "parameters": {
+        "mock_enable_fft": false,
+        "mock_enable_summary": false
+    }
+}

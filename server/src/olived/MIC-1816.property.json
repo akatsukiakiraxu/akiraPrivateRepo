@@ -1,0 +1,48 @@
+{
+    "Device": {
+        "Description": "MIOe-3816,BID#15",
+        "StartChannel": "0",
+        "SampleChannelCount": "4",
+        "ChannelCountMax": "16",
+        "IntervalCount": "1024",
+        "ValueRange": "+-10V",
+        "SignalType": "0",
+        "SamplingRate": "20000.0000"
+    },
+    "SoftCtrl": {
+        "IsOutputSummaryData": "false",
+        "IsOutputRawData": "true",
+        "comment": "SoftTriggerType 0: not use soft trigger,1: IntervalMs, 2: Threshold",
+        "SoftTriggerType": "2",
+        "SoftTrigger": {
+            "IntervalMs": "50",
+            "Threshold": "2.0000",
+            "ThresholdDeviation": "0.03",
+            "ThresholdMaskTime": "0.0000",
+            "ChannelIndex": "0",
+            "comment": "EdgeType -1: disable, 0: falling down, 1: rasing up, 2: both",
+            "EdgeType": "2"
+        },
+        "RecordTimeout": "0",
+        "IsDumpData": "false",
+        "DumpDataPath": "\/tmp\/adcdb_dumpData",
+        "IsShowDebugLog": "false"
+    },
+    "ADCDataFmt": {
+        "SummaryData": {
+            "DataCountPerChannel": "4",
+            "Type": "0",
+            "DataSize": "128",
+            "ExpectMax": "65535.0",
+            "ExpectMin": "-15.0"
+        },
+        "FFTData": {
+            "Type": "1",
+            "ExpectMax": "65535.0",
+            "ExpectMin": "-15.0"
+        },
+        "RawData": {
+            "Type": "3"
+        }
+    }
+}

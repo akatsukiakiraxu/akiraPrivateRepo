@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Olive</title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <!-- Meta -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="Phoenixcoded">
+      <meta name="keywords" content=", Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+      <meta name="author" content="Phoenixcoded">
+      <!-- Favicon icon -->
+      <!-- <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> -->
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
+      <!-- flag icon framework css -->
+      <link rel="stylesheet" type="text/css" href="assets/pages/flag-icon/flag-icon.min.css">
+      <!-- Menu-Search css -->
+      <link rel="stylesheet" type="text/css" href="assets/pages/menu-search/css/component.css">
+      <!-- Syntax highlighter Prism css -->
+      <link rel="stylesheet" type="text/css" href="assets/pages/prism/prism.css">
+      <!-- Nvd3 chart css -->
+      <link rel="stylesheet" href="../bower_components/nvd3/build/nv.d3.css" type="text/css" media="all">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+      <!--color css-->
+      <link rel="stylesheet" type="text/css" href="assets/css/color/color-2.css" id="color"/>
+
+      <link rel="stylesheet" type="text/css" href="assets/css/linearicons.css" >
+      <link rel="stylesheet" type="text/css" href="assets/css/simple-line-icons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/ionicons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/pcoded-horizontal.min.css">
+  </head>
+  <!-- Menu horizontal static layout -->
+
+  <body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div></div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+
+        <div class="pcoded-container">
+            <!-- Menu header start -->
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <a class="mobile-search morphsearch-search" href="#">
+                            <i class="ti-search"></i>
+                        </a>
+
+                        <a href="index.html">
+                            <!-- <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" /> -->
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <div>
+                                <ul class="nav-right">
+                                        <li class="user-profile header-notification">
+                                            <a href="#!">
+                                                <!-- <img src="assets/images/user.png" alt="User-Profile-Image"> -->
+                                                <span>Save</span>
+                                                <i class="ti-angle-down"></i>
+                                            </a>
+                                            <ul class="show-notification profile-notification">
+                                                <li>
+                                                    <!-- <a href="user-profile.html"></a> -->
+                                                        <i class="ti-save" aria-hidden="true"></i> CSV
+                                                    <!-- </a> -->
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Menu header end -->
+            <div class="pcoded-main-container">
+                <!-- <nav class="pcoded-navbar" pcoded-header-position="relative">
+                    <div class="pcoded-inner-navbar">
+                        <ul class="pcoded-item pcoded-right-item">
+                            <li class="pcoded-hasmenu">
+                                <a href="javascript:void(0)">
+                                    <span class="pcoded-micon"><i class="ti-save" aria-hidden="true"></i></span>
+                                    <span class="pcoded-mtext">Save</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    <li class="pcoded-hasmenu ">
+                                        <a href="javascript:void(0)" data-i18n="nav.menu-levels.main">
+                                            <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
+                                            <span class="pcoded-mtext">Menu Levels</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="javascript:void(0)" data-i18n="nav.menu-levels.menu-level-21">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Menu Level 2.1</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class="pcoded-hasmenu ">
+                                                <a href="javascript:void(0)" data-i18n="nav.menu-levels.menu-level-22.main">
+                                                    <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
+                                                    <span class="pcoded-mtext">Menu Level 2.2</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                                <ul class="pcoded-submenu">
+                                                    <li class="">
+                                                        <a href="javascript:void(0)" data-i18n="nav.menu-levels.menu-level-22.menu-level-31">
+                                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                            <span class="pcoded-mtext">Menu Level 3.1</span>
+                                                            <span class="pcoded-mcaret"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="">
+                                                <a href="javascript:void(0)" data-i18n="nav.menu-levels.menu-level-23">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Menu Level 2.3</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="">
+                                        <a href="javascript:void(0)" data-i18n="nav.disabled-menu.main" class="disabled">
+                                            <span class="pcoded-micon"><i class="ti-na"></i></span>
+                                            <span class="pcoded-mtext">Disabled Menu</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="sample-page.html" data-i18n="nav.sample-page.main">
+                                            <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i></span>
+                                            <span class="pcoded-mtext">CSV</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pcoded-hasmenu">
+                                <a href="javascript:void(0)">
+                                    <span class="pcoded-micon"><i class="ti-medall-alt" aria-hidden="true"></i></span>
+                                    <span class="pcoded-mtext">Support</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    <li class="">
+                                        <a href="http://flatable.phoenixcoded.net/doc" data-i18n="nav.documentation.main" target="_blank">
+                                            <span class="pcoded-micon"><i class="ti-file"></i></span>
+                                            <span class="pcoded-mtext">Documentation</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="https://support.phoenixcoded.net/#/home" target="_blank" data-i18n="nav.submit-issue.main">
+                                            <span class="pcoded-micon"><i class="ti-layout-list-post"></i></span>
+                                            <span class="pcoded-mtext">Submit Issue</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav> -->
+                <div class="pcoded-wrapper">
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+
+                            <!-- Main-body start -->
+                            <div class="main-body" >
+                                <div class="page-wrapper">
+                                    <!-- Page header start -->
+                                    <div class="page-header">
+                                        <div class="page-header-title">
+                                            <h4>Analysis</h4>
+                                        </div>
+                                        <!-- <div class="page-header-breadcrumb">
+                                            <ul class="breadcrumb-title">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.html">
+                                                        <i class="icofont icofont-home"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item"><a href="#!">Page Layouts</a>
+                                                </li>
+                                                <li class="breadcrumb-item"><a href="#!">Horizontal</a>
+                                                </li>
+                                                <li class="breadcrumb-item"><a href="#!">Static Layout</a>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <!-- Page header end -->
+                                    <!-- Page body start -->
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                            <!-- file card start -->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5>File List</h5>
+                                                </div>
+                                                <div class="card-block">
+                                                    <!-- <div class="text-right">
+                                                        <button class="btn btn-primary btn-outline-primary">CSV</button>
+                                                    </div> -->
+                                                    <div id="file-list"  >
+                                                        <div class="new-task">
+                                                            <div v-for="file in files">
+                                                                <div class="checkbox-fade fade-in-primary" >
+                                                                    <label class="check-task">
+                                                                        <!-- <input class="toggle" type="checkbox" value=""  v-model="file.selected"> -->
+                                                                        <input class="toggle" type="checkbox" value="" v-model="file.selected" v-on:click="showGraph(file)">
+                                                                        <span class="cr">
+                                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                                        </span>
+                                                                        <span>{{ file.name }}</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data-export">
+                                                            <div class="card-block">
+                                                                <div id="data-export">
+                                                                    <div class="rawexport">
+                                                                        <a id="rawdownload" href="#" download="maxmindata.dat" v-on:click="exportMaxMinData()">Raw Export</a>
+                                                                    </div>
+                                                                    <div class="csvexprt">
+                                                                        <a id="csvdownload" href="#" download="maxmindata.csv" v-on:click="exportMaxMinCSV()">CSV Export</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- file card end -->
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <!-- Default card start -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <!-- <i class="icofont icofont-chart-line "></i> -->
+                                                        <h5>chart</h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-rounded-down"></i>
+                                                            <i class="icofont icofont-refresh"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="chart" class='with-3d-shadow with-transitions'><svg height="512"></svg></div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>maxminchart</h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-rounded-down"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="maxminchart" class='with-3d-shadow'>
+                                                            <svg height="512"></svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>fft</h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-rounded-down"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="fft">
+                                                            <canvas id="fft-canvas" width="800" height="256" style="display: block; background-color: black; z-index: -1;"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>haar-dwt</h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-rounded-down"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="dwt">
+                                                            <canvas id="dwt-canvas" width="850" height="270" style="display: block; background-color: black; z-index: -1;"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Default card end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Page body end -->
+                                </div>
+                            </div>
+                            <!-- Main-body end -->
+
+                            <div id="styleSelector">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Warning Section Starts -->
+<!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="assets/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="assets/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="assets/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="assets/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="assets/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+<!-- Warning Section Ends -->
+<!-- Required Jquery -->
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../bower_components/tether/dist/js/tether.min.js"></script>
+<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="../bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="../bower_components/modernizr/modernizr.js"></script>
+<script type="text/javascript" src="../bower_components/modernizr/feature-detects/css-scrollbars.js"></script>
+<!-- classie js -->
+<script type="text/javascript" src="../bower_components/classie/classie.js"></script>
+<!-- Syntax highlighter prism js -->
+<script type="text/javascript" src="assets/pages/prism/custom-prism.js"></script>
+<!-- file js -->
+<!-- <script type="text/javascript" src="assets/pages/file/file.js"></script> -->
+<!-- NVD3 chart -->
+<script src="../bower_components/d3/d3.js"></script>
+<script src="../bower_components/nvd3/build/nv.d3.js"></script>
+<script src="assets/pages/chart/nv-chart/js/stream_layers.js"></script>
+<!-- i18next.min.js -->
+<script type="text/javascript" src="../bower_components/i18next/i18next.min.js"></script>
+<script type="text/javascript" src="../bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="../bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
+<script type="text/javascript" src="../bower_components/jquery-i18next/jquery-i18next.min.js"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="assets/pages/chart/nvd3/chart-nvd3.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+<script src="assets/js/pcoded.min.js"></script>
+<script src="assets/js/demo-10.js"></script>
+<!-- <script src="assets/js/demo-12.js"></script> -->
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/jquery.mousewheel.min.js"></script>
+
+<!-- <script src="./js/d3.3.5.17.min.js"></script> -->
+<!-- <script src="./js/nv.d3.js"></script> -->
+<script src="./js/vue.js"></script>
+<script src="./js/vue-mdl.min.js"></script>
+<script src="./js/dsp.js"></script>
+<script src="./js/chroma.js"></script>
+<script src="./js/dwt-utils.js"></script>
+<script src="./js/app-table.js"></script>
+
+</body>
+
+</html>

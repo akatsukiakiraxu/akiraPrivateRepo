@@ -1,0 +1,288 @@
+#%RAML 1.0
+title: Olive API
+version: v1
+
+types:
+    UnitStatus:
+        type: object
+        properties:
+            is_acquiring:   boolean
+            is_monitoring:  boolean
+            is_ml_running:  boolean
+    MLParameters:
+        type: object
+        properties:
+            target_channels:
+                type: string[]
+                required: false
+                description: 入力元のチャンネル。現在は同時に1つのチャンネルのみ使用可能。
+            input_data_offset:
+                type: integer
+                required: false
+                description: 入力データの先頭からのオフセット
+            input_data_size:
+                type: integer
+                required: false
+                description: 入力のサイズ
+            training_count:
+                type: integer
+                required: false
+                description: トレーニング回数
+            trained_network_path:
+                type: string
+                required: false
+                description: トレーニング済みネットワークのパス。指定しない場合はトレーニング
+            input_type:
+                type: string
+                required: false
+                description: 入力の種類
+                enum:
+                    - raw   # RAW values
+                    - fft   # FFT result
+            loss_threshold:
+                type: number
+                required: false
+                description: ロス値の閾値
+
+    AcquisitionUnitConfig:
+        type: object
+        properties:
+            name:
+                type: string
+                description: ユニットの名前
+            type:
+                type: string
+                description: ユニットの種類
+            change_finder_list:
+                type: string[]
+                description: Change Finderの候補リスト。現在のところ常に空のリストとなる。
+            channels:
+                description: ユニットのチャンネル一覧。実際はキーをチャンネル名とする連想配列(JSではobject)
+                properties:
+                    //:
+                        type: AcquisitionChannelConfig
+                        description: チャンネルの構成
+
+    AcquisitionChannelConfig:
+        type: object
+        properties:
+            sampling_rates_supported:
+                type: number[]
+                description: サポートしているサンプリングレート
+            gains_supported:
+                type: number[]
+                description: サポートしているゲイン
+            couplings_supported:
+                type: AcquisitionCouplingType[]
+                description: サポートしているカップリング
+            minimum_voltage:
+                type: number
+                description: 最小入力電圧
+            maximum_voltage:
+                type: number
+                description: 最大入力電圧
+            minimum_value:
+                type: number
+                description: ADCの最小値
+            maximum_value:
+                type: number
+                description: ADCの最大値
+    AcquisitionCouplingType:
+        type: string
+        pattern: DC|AC
+    AcquisitionUnitSettings:
+        type: object
+        properties:
+            enabled:
+                type: boolean
+                description: 取り込み自体が有効かどうか
+            comparing:
+                type: boolean
+                description: 比較処理が有効かどうか
+            channels:
+                description: チャンネルの設定。実際はキーをチャンネル名とする連想配列
+                type: object
+                properties:
+                    //:
+                        description: チャンネルchNの設定。
+                        type: object
+                        properties:
+                            enabled:
+                                type: boolean
+                                required: false
+                                description: チャンネルの取り込みが有効かどうか
+                            sampling_rate:
+                                type: number
+                                required: false
+                                description: チャンネルのサンプリングレート
+                            gain:
+                                type: number
+                                required: false
+                                description: チャンネルのゲイン
+                            coupling:
+                                type: AcquisitionCouplingType
+                                required: false
+                                description: チャンネルのカップリング
+    MLEvent:
+        type: MLTrainingEvent | MLInferenceEvent
+    MLTrainingEvent:
+        type: object
+        properties:
+            type:
+                description: ML関連イベントの種類
+                type: string
+                pattern: training-progress|training-done
+            trained_count:
+                description: トレーニング完了した入力データ数
+                type: number
+    MLInferenceEvent:
+        type: object
+        properties:
+            type:
+                description: ML関連イベントの種類
+                type: string
+                pattern: inference-result
+            loss:
+                description: ロス値
+                type: number
+    
+    
+/ping:
+    description: ユニットの生存確認
+    get:
+        responses:
+            200:
+                body: text/plain
+/time/{datetime}:
+    description: ユニットの内蔵時計の時刻を設定する。
+    uriParameters:
+        datetime: 
+            type: datetime
+            description: ユニットの内蔵時計の日付に設定する時刻
+    get:
+        responses:
+            200:
+                body: text/plain
+
+/status:
+    description: ユニットの現在の状態を取得する。
+    get:
+        responses:
+            200:
+                body:
+                    application/json:
+                        type: UnitStatus
+
+/ml:
+    description: 機械学習関連の操作を行う。
+    /start:
+        description: 機械学習の動作を開始する。
+        get:
+            responses:
+                200:
+                    body: text/plain
+                500:
+                    description: 機械学習の動作開始に失敗した。
+                    body: text/plain
+
+    /stop:
+        description: 機械学習の動作を停止する。
+        get:
+            responses:
+                200:
+                    body: text/plain
+                500:
+                    description: 機械学習の動作停止に失敗した。
+                    body: text/plain
+    /settings:
+        /get:
+            description: 機械学習の設定を取得する。
+            get:
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                type: MLParameters
+        /set:
+            description: 機械学習の設定をする。
+            post:
+                body:
+                    application/json:
+                        type: MLParameters
+    /event:
+        description: イベントデータを通知するためのWebSocketエンドポイント。実際はWSなのでGETでアクセスはできない。
+        get:
+            responses:
+                200:
+                    body:
+                        application/json:
+                            type: MLEvent
+                        
+
+/acquisition:
+    description: 取り込み関連の操作を行う。
+    /start:
+        description: センサデータの収集を開始する。
+        get:
+            responses:
+                200:
+                    body: text/plain
+                500:
+                    description: 要求を実行できなかった。
+                    body: text/plain
+    /stop:
+        description: センサデータの収集を停止する。
+        get:
+            responses:
+                200:
+                    body: text/plain
+                500:
+                    description: 要求を実行できなかった。
+                    body: text/plain
+    /config/get:
+        description: センサデータの収集ユニットの現在の構成を取得する。
+        get:
+            responses:
+                200:
+                    body:
+                        application/json:
+                            type: AcquisitionUnitConfig
+
+    /settings/get:
+        description: センサデータの収集ユニットの現在の動作設定を取得する。
+        get:
+            responses:
+                200:
+                    body:
+                        application/json:
+                            type: AcquisitionUnitSettings
+
+    /settings/set:
+        description: センサデータの収集ユニットの現在の動作設定を設定する。
+        post:
+            responses:
+                200:
+                    body:
+                        application/json:
+                            type: AcquisitionUnitSettings
+
+/monitoring:
+    description: モニタリング関連の操作を行う。
+    /start:
+        description: WebSocket経由でのモニタリング動作を開始する。
+        get:
+            responses:
+                200:
+                    body: text/plain
+                500:
+                    description: 要求を実行できなかった。
+                    body: text/plain
+    /stop:
+        description: WebSocket経由でのモニタリング動作を停止する。
+        get:
+            responses:
+                200:
+                    body: text/plain
+                500:
+                    description: 要求を実行できなかった。
+                    body: text/plain

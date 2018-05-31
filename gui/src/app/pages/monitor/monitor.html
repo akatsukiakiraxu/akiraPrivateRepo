@@ -1,0 +1,37 @@
+<style type="text/css">
+	iframe{height:930px}
+	@media (max-width: 1600px) {
+		iframe{height:580px}
+	}
+	@media (max-width: 1366px) {	/* iPad Pro - v */
+		iframe{height:510px}
+	}
+	@media (max-width: 1024px) {	/* iPad Pro - h, iPad - v */
+		iframe{height:420px}
+	}
+	@media (max-width: 768px) {		/* iPad - h */
+		iframe{height:360px}
+	}
+	@media (max-width: 375px) {		/* iPhone - h */
+		iframe{height:210px}
+	}
+</style>
+<div ng-controller="monitorCtrl">
+	<div class="widgets">
+		<div class="row">
+			<div class="col-md-10" style="padding: 0;">
+				<iframe id="chart" ng-show="inputName == 'fft'" src="assets/frontend/frontend/fft.html" style="width:100%; border:0;" />
+				<iframe id="chart-raw" ng-show="inputName == 'raw'" src="assets/frontend/frontend/index.html" style="width:100%; border:0;" />
+			</div>
+			<div class="col-md-2" style="padding: 0 10px;height: 100%">
+				<div ng-include="'app/pages/monitor/widgets/input.html'"></div>
+<!--				<div ng-include="'app/pages/monitor/widgets/monitorInterval.html'"></div>-->
+				<div ng-include="'app/pages/monitor/widgets/status.html'"></div>
+				<div ng-include="'app/pages/monitor/widgets/effectiveRange.html'"></div>
+				<div ng-include="'app/pages/monitor/widgets/quantize.html'"></div>
+				<div ng-include="'app/pages/monitor/widgets/triggerChannel.html'"></div>
+				<div ng-include="'app/pages/monitor/widgets/learnSetting.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>

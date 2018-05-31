@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Mission</title>
+    <link rel="stylesheet" href="../css/material.css">
+    <link rel="stylesheet" href="../css/app.css">
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Home</span>
+        </div>
+      </header>
+
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid">
+
+          <table id="device-list" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="mdl-data-table__cell--non-numeric">Name</th>
+                <th class="mdl-data-table__cell--non-numeric">IP Address</th>
+                <th class="mdl-data-table__cell--non-numeric">MAC Address</th>
+                <th class="mdl-data-table__cell--non-numeric">Status</th>
+                <th class="mdl-data-table__cell--non-numeric">Action</th>
+                <!--<th class="mdl-data-table__cell--non-numeric">Save Data in Files</th>-->
+                <th class="mdl-data-table__cell--non-numeric">Power Off</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="device in devices">
+                <td>
+                  <mdl-radio class="mdl-js-ripple-effect"
+                             v-model="selected"
+                             v-bind:val="device.index"
+                             onclick=" ">
+                  </mdl-radio>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">{{ device.name }}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ device.ip_address }}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ device.mac_address }}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ device.status }}</td>
+		<td>
+		  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" v-on:click="doStartStop">{{ device.action }}</button>
+		</td>
+		<!--
+		<td>
+		  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-file">
+		    <input type="checkbox" id="switch-file" class="mdl-switch__input" checked>
+		    <span class="mdl-switch__label"></span>
+		  </label>
+		</td>
+		  -->
+		<td>
+		  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" v-on:click="doPoweroff">{{ device.power }}</button>
+		</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <svg id="chart"
+                 width="1000"
+                 height="500"
+                 viewBox="0 0 1000 500"
+                 preserveAspectRatio="xMidYMid meet">
+            </svg>
+          </div>
+
+          <!--<div id="fft" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">-->
+          <div id="fft">
+	    <canvas id="fft-canvas" width="1000" height="256" style="display: block; background-color: black; z-index: -1;"></canvas>
+	  </div>
+
+        </div>
+      </main>
+    </div>
+
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/d3.v4.min.js"></script>
+    <script src="../js/d3-selection-multi.v1.min.js"></script>
+    <script src="../js/material.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-mdl.min.js"></script>
+    <script src="../js/dsp.js"></script>
+    <script src="../js/chroma.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>
