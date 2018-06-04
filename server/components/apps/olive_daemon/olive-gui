@@ -1,5 +1,0 @@
-#!/bin/sh
-cd /opt/olive_gui
-cd $(realpath .)
-#echo $(realpath .)
-gulp serve

@@ -1,4 +1,0 @@
-#!/bin/sh
-cd /opt/olive_apiServer
-cd $(realpath .)
-./olived.linux -acq_config_file ./acquisition.config.adc-db.json -ml_config Local -frame_record -data_dir /tmp/acqdata
