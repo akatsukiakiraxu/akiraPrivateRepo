@@ -1,0 +1,138 @@
+sudo dpkg-reconfigure keyboard-configuration
+git clone https://github.com/eclipse/paho.mqtt.c.git
+sudo apt-get install libssl-dev
+sed -i 's/\r//'
+
+ÅymysqlÅz
+sudo apt-get install mysql-server
+sudo apt-get install php7.0-mysql phpmyadmin
+go get github.com/go-sql-driver/mysql
+
+ÅySQLite3Åz
+sudo apt-get install sqlite3
+go get github.com/mattn/go-sqlite3
+
+ÅySAMBAÅz
+sudo apt-get install -y samba
+sudo useradd fixstars
+sudo passwd fixstars
+sudo systemctl restart smbd nmbd
+
+sudo vi /etc/samba/smb.conf
+[share]
+   comment = Share directory
+   path = /var/lib/share
+   read only = no
+   guest only = no
+   guest ok = no
+   share modes = yes
+
+sudo ufw disable
+sudo service apparmor stop
+sudo iptables -A INPUT -p udp --dport 137:138 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 139 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 445 -j ACCEPT
+
+ÅyastyleÅz
+astyle --style=1tbs -s4 -S -N -Y -M80 -p -j -k1 -U -H xxx.c
+
+
+ÅyipÅz
+sudo ip addr add 10.0.1.102/24 dev enp2s0
+sudo ip link set enp2s0 up
+
+
+/lib/modules/4.13.0-37-generic/kernel/drivers/daqnavi
+
+ÅyGITÅz
+git config --global core.whitespace cr-at-eol
+git config --global core.autocrlf true
+git config core.filemode false
+git submodule update --init
+
+é©ìÆLoadÅ@ko
+/etc/init.d/XXXX
+XXXÇÃì‡óeÇÕbashÇ≈èëÇ≠
+ln -s /etc/init.d/XXXX /etc/rc3.d/S05XXX
+
+
+sudo apt-get install libssl-dev
+
+
+ÅysudoÅz
+sudo visudo
+<username> ALL=NOPASSWD: ALL
+
+ÅyèGä€Åz
+ÉtÉ@ÉCÉãñºÅFÅ@^[^:]+:
+
+
+ÅydkmsÅz
+# dkms remove  -m $module -v $version --all
+# dkms add     -m $module -v $version
+# dkms build   -m $module -v $version -k $newkernelversion
+# dkms install -m $module -v $version -k $newkernelversion
+
+
+std::for_each (channelData.begin(), channelData.end(), [&](const double d) {  
+    accum  = sqrt((d-threshold)*(d-threshold));
+    if (accum < accut) {
+        retPointVect.push_back(index);
+        fprintf(stderr, "[%d]:%2.6f\n", index, d);
+    }
+    index++;
+});
+
+
+
+#include <linux/version.h>
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0)
+#include <linux/sched/signal.h>
+#endif
+
+
+curl -X POST -H "Content-Type: application/json" http://localhost:2223/acquisition/settings/set -d @acquisition.settings.json
+curl -X POST -H "Content-Type: application/json" http://localhost:2223/datafiles/save -d @savefile.json
+curl -X POST -H "Content-Type: application/json" http://localhost:2223/datafiles/delete -d @deletefile.json
+
+http://192.168.61.135:2223/acquisition/settings/set
+
+Åyhostapd daemonÅz
+Å°/opt/hostapd
+#!/bin/sh
+rfkill unblock all
+ip link set wlan0 up
+hostapd /etc/hostapd/hostapd.conf
+service isc-dhcp-server restart
+
+Å°/etc/systemd/system/hostapd.service
+ [Unit]
+ After=network-online.target
+
+ [Service]
+ type=forking
+ PIDFile=/run/hostapd/hostapd.pid
+ ExecStart=/opt/hostapd
+ PrivateTmp=true
+
+ [Install]
+ WantedBy=network-online.target
+
+Å°systemctl enable hostapd.service
+
+Å°sudo apt-mark hold linux-image-generic linux-headers-generic
+sudo apt-mark unhold linux-image-generic linux-headers-generic
+
+Å°journalctl -f | grep olive-api-server
+journalctl -f
+
+Å°udevadm control --reload-rules
+/etc/udev/rules.d/
+
+Å°dconf-editor
+
+Å°read-only
+sudo mount -o rw,remount /
+
+Å°óeó í≤Ç◊
+du -h --max-depth 3 /home/ > ~/dir-size.txt
