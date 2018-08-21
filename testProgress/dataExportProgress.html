@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h3>
+        <span>{{em.data.exportingMessage}}</span>
+    </h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div>{{em.data.exportingFile}}</div>
+    <uib-progressbar ng-class="(em.data.exportingProgress < 100) ? 'progress-striped active' : 'progress'"
+                 type="success" value="em.data.exportingProgress"></uib-progressbar>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-show="em.data.exportingProgress == 100 || em.data.exportingProgress == 0" ng-click="em.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-show="em.data.exportingProgress > 0 && em.data.exportingProgress < 100" ng-click="em.cancel()">Cancel</button>
+</div>

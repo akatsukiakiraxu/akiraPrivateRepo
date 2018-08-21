@@ -1,0 +1,25 @@
+#!/bin/sh
+if [ -f "${PWD}/customerIP_1" ]; then
+  while IFS='=' read -r key value
+  do
+    eval ${key}=\${value}
+  done < "${PWD}/customerIP_1"
+  echo ${dev} ${ip} ${netmask} ${broadcast}
+  if [ "${broadcast}" != "" ]; then
+    echo "broadcast= "${broadcast}
+  else
+    echo "not broadcast"
+  fi
+fi
+if [ -f "${PWD}/customerIP_2" ]; then
+  while IFS='=' read -r key value
+   do
+     eval ${key}=\${value}
+   done < "${PWD}/customerIP_2"
+   echo ${dev} ${ip} ${netmask} ${broadcast}
+   if [ "${broadcast}" != "" ]; then
+     echo "broadcast= "${broadcast}
+   else
+     echo "not broadcast"
+   fi
+ fi

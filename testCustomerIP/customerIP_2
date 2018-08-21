@@ -1,0 +1,5 @@
+# app.properties
+dev=eth1
+ip=2.2.2.2
+netmask=b.b.b.b
+broadcast=c.c.c.c
